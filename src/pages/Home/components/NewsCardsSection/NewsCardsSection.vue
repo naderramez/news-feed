@@ -29,7 +29,7 @@
     </div>
 
     <div class="row justify-center q-ma-md">
-      <button className="view-all-news-button">View All News</button>
+      <CTAButton>View All News</CTAButton>
     </div>
   </section>
 </template>
@@ -37,9 +37,13 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import { NewsCategories, NewsItems } from 'src/pages/Home/models/newsModels';
+import CTAButton from 'src/components/CTAButton.vue';
 import FilterBtn from '../FilterBtn/FilterBtn.vue';
 import NewsCard from 'src/pages/Home/components/NewsCard/NewsCard.vue';
-import * as newsService from 'src/pages/Home/services/newsServices';
+import {
+  getNewsItems as getNewsItemsService,
+  getNewsCategories as getNewsCategoriesService,
+} from 'src/pages/Home/services/newsServices';
 
 let allNews: NewsItems = [];
 
@@ -48,14 +52,14 @@ const newsItems = ref<NewsItems>([]);
 const activeCategory = ref<number | null>(null);
 
 const getNewsCategories = () => {
-  newsService.getNewsCategories().then((res) => {
+  getNewsCategoriesService().then((res) => {
     const categories = res.data.newsCategory;
     newsCategories.value = categories;
   });
 };
 
 const getNewsItems = () => {
-  newsService.getNewsItems().then((res) => {
+  getNewsItemsService().then((res) => {
     const news = res.data.News;
     allNews = structuredClone(news);
     newsItems.value = news;
@@ -109,36 +113,6 @@ onMounted(() => {
     color: #000;
     font-weight: bolder;
     font-size: 5rem;
-  }
-
-  .view-all-news-button {
-    cursor: pointer;
-    background-color: #ff7c16;
-    border-color: transparent;
-    color: #fff;
-    font-size: 13px;
-    padding: 13px 50px;
-    border-radius: 10px;
-    font-weight: normal;
-    border: 1px solid #ff7c16;
-
-    &:active {
-      color: #ff7c16;
-      border: 1px solid #ff7c16;
-      background-color: #fff;
-    }
-
-    &:hover {
-      color: #ff7c16;
-      border: 1px solid #ff7c16;
-      background-color: #fff;
-    }
-
-    &:focus {
-      color: #ff7c16;
-      border: 1px solid #ff7c16;
-      background-color: #fff;
-    }
   }
 }
 </style>

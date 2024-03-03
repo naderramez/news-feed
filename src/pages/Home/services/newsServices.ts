@@ -1,6 +1,7 @@
 import { AxiosResponse } from 'axios';
 import { api } from 'src/boot/axios';
 import {
+  HighlightItemsResponse,
   NewsCategoriesResponse,
   NewsItemsResponse,
 } from '../models/newsModels';
@@ -13,4 +14,10 @@ export const getNewsCategories = (): Promise<
 
 export const getNewsItems = (): Promise<AxiosResponse<NewsItemsResponse>> => {
   return api.get('d275425a434e02acf2f7');
+};
+
+export const getHighlights = (): Promise<
+  AxiosResponse<HighlightItemsResponse>
+> => {
+  return api.get('fee177346e7875554413');
 };
