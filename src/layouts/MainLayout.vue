@@ -1,23 +1,15 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
-      <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="toggleLeftDrawer"
-        />
+    <header>
+      <AppHeader @sideMenuBtnClick="toggleLeftDrawer" />
+    </header>
 
-        <q-toolbar-title> Quasar App </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
-      </q-toolbar>
-    </q-header>
-
-    <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
+    <q-drawer
+      v-if="$q.screen.lt.lg"
+      v-model="leftDrawerOpen"
+      show-if-above
+      bordered
+    >
       <q-list>
         <EssentialLink v-for="link in links" :key="link.id" v-bind="link" />
       </q-list>
@@ -36,6 +28,7 @@ import EssentialLink, {
   EssentialLinkProps,
 } from 'components/EssentialLink.vue';
 import Footer from 'src/components/Footer/Footer.vue';
+import AppHeader from 'src/components/Header/Header.vue';
 
 const links: EssentialLinkProps[] = [
   {
@@ -62,3 +55,10 @@ function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value;
 }
 </script>
+
+<style lang="scss" scoped>
+header {
+  background-color: transparent;
+  padding: 2rem 4rem;
+}
+</style>

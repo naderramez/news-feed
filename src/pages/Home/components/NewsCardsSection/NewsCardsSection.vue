@@ -10,13 +10,15 @@
         :active="!activeCategory"
       />
       <template v-if="newsCategories.length">
-        <FilterBtn
-          v-for="category in newsCategories"
-          :key="category.id"
-          :text="category.name"
-          :filterAction="() => filterByCategory(category.id)"
-          :active="activeCategory === category.id"
-        />
+        <template v-for="category in newsCategories">
+          <FilterBtn
+            v-if="checkIfCategoryHasNews(allNews, `${category.id}`)"
+            :key="category.id"
+            :text="category.name"
+            :filterAction="() => filterByCategory(category.id)"
+            :active="activeCategory === category.id"
+          />
+        </template>
       </template>
     </div>
 
@@ -51,6 +53,14 @@ const newsCategories = ref<NewsCategories>([]);
 const newsItems = ref<NewsItems>([]);
 const activeCategory = ref<number | null>(null);
 
+const checkIfCategoryHasNews = (
+  news: NewsItems,
+  categoryId: string
+): boolean => {
+  if (news.some((item) => item.categoryID === categoryId)) return true;
+  else return false;
+};
+
 const getNewsCategories = () => {
   getNewsCategoriesService().then((res) => {
     const categories = res.data.newsCategory;
@@ -75,7 +85,6 @@ const filterByCategory = (category: number) => {
   const filteredNews = allNews.filter(
     (news) => news.categoryID === `${category}`
   );
-  console.log('filteredNews', filteredNews);
   activeCategory.value = category;
   newsItems.value = filteredNews;
   console.log(category);
