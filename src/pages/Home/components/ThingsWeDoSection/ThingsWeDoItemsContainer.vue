@@ -17,11 +17,11 @@
 <script setup lang="ts">
 import ThingsWeDoItem from 'src/pages/Home/components/ThingsWeDoSection/ThingsWeDoItem/ThingsWeDoItem.vue';
 import { TThingsWeDoItem } from './ThingsWeDoItem/thingsWeDoItemsModel';
-import TRANSFORMATION from '/public/things-we-do/transformation.png';
-import ENVISION from '/public/things-we-do/envision.png';
-import DYNAMICS from '/public/things-we-do/dynamics.png';
-import CRAFTY_MIND from '/public/things-we-do/crafty-mind.png';
-import SERVICES from '/public/things-we-do/services.png';
+import TRANSFORMATION from '/things-we-do/transformation.png';
+import ENVISION from '/things-we-do/envision.png';
+import DYNAMICS from '/things-we-do/dynamics.png';
+import CRAFTY_MIND from '/things-we-do/crafty-mind.png';
+import SERVICES from '/things-we-do/services.png';
 
 const thingsWeDoItems: TThingsWeDoItem[] = [
   {
