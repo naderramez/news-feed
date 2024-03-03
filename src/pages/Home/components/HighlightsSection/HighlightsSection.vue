@@ -1,5 +1,6 @@
 <template>
-  <section id="highlights-section">
+  <section id="highlights-section" class="relative-position">
+    <div v-if="$q.screen.gt.lg" id="decore"></div>
     <div v-if="highlights.length" class="q-pa-md">
       <q-carousel
         v-model="activeSlide"
@@ -16,7 +17,10 @@
           :key="highlight.id"
           :name="highlight.title"
         >
-          <HighlightBanner :highlightItem="highlight" />
+          <HighlightBanner
+            class="q-mb-lg q-mb-lg-none"
+            :highlightItem="highlight"
+          />
         </q-carousel-slide>
 
         <template #navigation-icon="{ active, index }">
@@ -75,6 +79,7 @@ onMounted(() => {
 
 <style lang="scss">
 #highlights-section {
+  overflow: hidden;
   .q-carousel {
     height: auto;
 
@@ -102,6 +107,37 @@ onMounted(() => {
         font-size: 40px;
         color: #353535;
         transform: translateY(-10%);
+      }
+    }
+  }
+
+  #decore {
+    background-image: url('/banner-section/Decore.png');
+    width: 823px;
+    height: 912px;
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    // transform: translate(-50%, 50%);
+    z-index: 1;
+    -webkit-animation: spin 4s linear infinite;
+    -moz-animation: spin 4s linear infinite;
+    animation: spin 4s linear infinite;
+
+    @-moz-keyframes spin {
+      100% {
+        -moz-transform: rotate(360deg);
+      }
+    }
+    @-webkit-keyframes spin {
+      100% {
+        -webkit-transform: rotate(360deg);
+      }
+    }
+    @keyframes spin {
+      100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
       }
     }
   }

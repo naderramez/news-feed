@@ -25,6 +25,7 @@
 
     <q-page-container>
       <router-view />
+      <Footer />
     </q-page-container>
   </q-layout>
 </template>
@@ -34,6 +35,7 @@ import { ref } from 'vue';
 import EssentialLink, {
   EssentialLinkProps,
 } from 'components/EssentialLink.vue';
+import Footer from 'src/components/Footer/Footer.vue';
 
 const links: EssentialLinkProps[] = [
   {
