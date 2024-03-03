@@ -1,5 +1,58 @@
 // app global css in SCSS form
 
+$mainBtnColor: #ff7c16;
+
 html {
   font-size: 10px;
+}
+
+.cta-button {
+  cursor: pointer;
+  background-color: $mainBtnColor;
+  border-color: transparent;
+  color: #fff;
+  font-size: 1.3rem;
+  padding: 1.3rem 5rem;
+  border-radius: 10px;
+  font-weight: normal;
+  border: 1px solid $mainBtnColor;
+
+  &:active {
+    color: $mainBtnColor;
+    border: 1px solid $mainBtnColor;
+    background-color: #fff;
+  }
+
+  &:hover {
+    color: $mainBtnColor;
+    border: 1px solid $mainBtnColor;
+    background-color: #fff;
+  }
+
+  &:focus {
+    color: $mainBtnColor;
+    border: 1px solid $mainBtnColor;
+    background-color: #fff;
+  }
+}
+
+.absolute-center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+$circle-sizes: (
+  '52': 52px,
+  '62': 62px,
+);
+
+@each $size, $size-value in $circle-sizes {
+  .circle {
+    &-#{$size} {
+      width: $size-value;
+      height: $size-value;
+      border-radius: 50%;
+    }
+  }
 }

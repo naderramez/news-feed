@@ -16,6 +16,18 @@ export type NewsItem = {
   showOnHomepage: ShowNewsItemOnHomePage;
 };
 
+export type HighlightItem = {
+  id: number;
+  brief: string;
+  order: number;
+  title: string;
+  imgUrl: string;
+  itemUrl: string;
+  category: string;
+  videoUrl: string;
+  colorCode: string;
+};
+
 export type NewsCategories = NewsCategory[];
 export type NewsCategoriesResponse = {
   newsCategory: NewsCategories;
@@ -24,4 +36,12 @@ export type NewsCategoriesResponse = {
 export type NewsItems = NewsItem[];
 export type NewsItemsResponse = {
   News: NewsItems;
+};
+
+export type HighlightItems = HighlightItem[];
+export type HighlightItemsResponse = {
+  slides: HighlightItems;
+};
+export type HighlightBannerProps = {
+  highlightItem: HighlightItem;
 };
